@@ -1,19 +1,19 @@
-const express = require('express');
-const fetch = require('node-fetch');
+const express = require("express");
+const fetch = require("node-fetch");
 const app = express();
-require('dotenv').config(); // add this line to use dotenv package
+require("dotenv").config(); // add this line to use dotenv package
 
-app.get('/', (req, res) => {
-  res.send('Practice Project oauth')
+app.get("/", (req, res) => {
+  res.send("Practice Project oauth");
 });
 
-app.get('/login/github', (req, res) => {
+app.get("/login/github", (req, res) => {
   const url = `https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=http://localhost:4000/login/github/callback`; // github oauth url
   res.redirect(url);
 });
 
 async function getAccessToken(code) {
-  const res = await fetch('https://github.com/login/oauth/access_token', {
+  const res = await fetch("https://github.com/login/oauth/access_token", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -26,14 +26,25 @@ async function getAccessToken(code) {
   });
   const data = await res.text();
   const params = new URLSearchParams(data);
-  return params.get('access_token');
+  return params.get("access_token");
 }
 
-app.get('/login/github/callback', async (req, res) => {
+async function getGithubUser(access_token) {
+  const req = await fetch("https://api.github.com/user", {
+    headers: {
+      Authorization: `bearer ${access_token}`
+    }
+  });
+  const data = await req.json();
+  return data;
+}
+
+app.get("/login/github/callback", async (req, res) => {
   const code = req.query.code;
   const token = await getAccessToken(code);
-  res.json({token});
+  const githubData = await getGithubUser(token);
+  res.json(githubData);
 });
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log('Listening on http://localhost:' + PORT));
+app.listen(PORT, () => console.log("Listening on http://localhost:" + PORT));
