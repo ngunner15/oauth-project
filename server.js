@@ -42,8 +42,16 @@ async function getGithubUser(access_token) {
 app.get("/login/github/callback", async (req, res) => {
   const code = req.query.code;
   const token = await getAccessToken(code);
-  const githubData = await getGithubUser(token);
-  res.json(githubData);
+  
+  getGithubUser(token).then((data) => {
+    //console.log(data);
+    if (data.node_id === process.env.GITHUB_ID) {
+      res.send("Hello Nisarg!");
+    } else {
+      res.send("Unauthorized entry");
+    }
+  });
+
 });
 
 const PORT = process.env.PORT || 4000;
