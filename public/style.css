@@ -1,0 +1,34 @@
+body {
+  height: 100vh;
+  margin: 0;
+  color: #222;
+  font-family: 'Righteous', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(71, 43, 186);
+  background: linear-gradient(0deg, rgba(71, 43, 186, 1) 0%, rgba(44, 25, 121, 1) 100%);
+}
+
+.content {
+  background: white;
+  width: 380px;
+  height: 480px;
+  border-radius: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 16px #222;
+}
+
+.content-bottom {
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: 26px;
+  margin: 32px auto 24px;
+  line-height: 40px;
+}
