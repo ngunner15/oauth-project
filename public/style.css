@@ -32,3 +32,35 @@ h1 {
   margin: 32px auto 24px;
   line-height: 40px;
 }
+
+.img-github {
+  margin-top: 32px;
+  width: 160px;
+  height: 160px;
+}
+
+.btn {
+  text-decoration: none;
+  display: block;
+  width: 220px;
+  line-height: 38px;
+  padding-top: 2px;
+  border-radius: 20px;
+  color: white;
+  background: rgba(71, 43, 186, 1);
+  margin: 0 auto;
+  border: none;
+  font-size: 14px;
+}
+
+input[type='text'] {
+  width: 180px;
+  line-height: 32px;
+  margin-bottom: 12px;
+  padding-left: 12px;
+}
+
+.sign-in-text {
+  font-size: 14px;
+  line-height: 22px;
+}
