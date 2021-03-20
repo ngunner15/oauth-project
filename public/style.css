@@ -11,7 +11,7 @@ body {
 }
 
 .content {
-  background: white;
+  background: beige;
   width: 380px;
   height: 480px;
   border-radius: 40px;
@@ -46,7 +46,7 @@ h1 {
   line-height: 38px;
   padding-top: 2px;
   border-radius: 20px;
-  color: white;
+  color: beige;
   background: rgba(71, 43, 186, 1);
   margin: 0 auto;
   border: none;
@@ -63,4 +63,14 @@ input[type='text'] {
 .sign-in-text {
   font-size: 14px;
   line-height: 22px;
+}
+
+.success, .error {
+  color: beige;
+  text-align: center;
+  border: solid 4px;
+  border-radius: 5px;
+  font-size: 30px;
+  margin: 0 auto;
+  padding: 10px;
 }
