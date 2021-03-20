@@ -10,6 +10,15 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+app.get("/success", (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/success.html'));
+});
+
+app.get("/error", (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/error.html'));
+});
+
+
 app.get("/login/github", (req, res) => {
   const url = `https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=http://localhost:4000/login/github/callback`; // github oauth url
   res.redirect(url);
@@ -49,9 +58,9 @@ app.get("/login/github/callback", async (req, res) => {
   getGithubUser(token).then((data) => {
     //console.log(data);
     if (data.node_id === process.env.GITHUB_ID) {
-      res.send("Hello Nisarg!");
+      res.redirect('/success');
     } else {
-      res.send("Unauthorized entry");
+      res.redirect('/error');
     }
   });
 
